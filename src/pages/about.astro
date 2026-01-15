@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+// Content Fetching: List four most recent work projects
+const educations = (await getCollection('education'));
+import EducationPreview from '../components/EducationPreview.astro';
+---
+
+<BaseLayout title="About | Yanis M." description="Learn about me.">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero title="About"></Hero>
+
+			<section>
+				<h2 class="section-title">Background</h2>
+				<div class="content">
+					<p>
+						Born in November, I have grown a passion for software developement at a young age, while English has never been a native language for me, my software developement journey helped me develop all the current skills that I have.
+					</p>
+					<p>
+						I am also a big enthusiast of Free and Open Source Softwares and internet freedom, including things such as <a class="bold">privacy</a> and <a class="bold">security</a>. Reason why I do not really use big platforms such as <a class="bold">LinkedIn</a> with horrible Privacy Policy and business practices.
+					</p>
+					<p class="bold">
+						This website serves as a home for me to share my knowledge to others and make a bridge for people to learn about me.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Education</h2>
+					<Grid variant="small">
+
+						{
+							educations.map((education) => (
+								<li>
+									<EducationPreview education={education} />
+								</li>
+							))
+						}
+					</Grid>
+			</section>
+			<section>
+				<h2 class="section-title">Skills</h2>
+				<div class="content">
+					<a class="bold">JavaScript / Typescript</a>, <a class="bold">Python</a>, <a class="bold">Lua / LuaU</a>, <a class="bold">Docker / Podman</a>, <a class="bold">GitHub</a>
+				</div>
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<style>
+	.bold { font-weight: bold; }
+
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

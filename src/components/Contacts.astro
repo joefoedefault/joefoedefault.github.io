@@ -1,0 +1,65 @@
+---
+function RVS(content: string) {
+	return [...content].reverse().join('')
+}
+const Socials = {
+	ELL: `mailto:hxsobfyncdaw_contact${RVS("moc.liamtrats.esu@")}`,
+	SES: "XXXXXXXXXXXXXX",
+	LIN: `${RVS("knil//:sptth")}${RVS("m-sinay/ni/moc.nide")}${RVS('703341369-')}`
+}
+---
+
+<section class="box skills">
+	<a class="stack gap-2 lg:gap-4" href={Socials.ELL} target="_blank" rel="noopener noreferrer">
+		<h2>E{RVS("liam")}</h2>
+		<p>An easy way to reach out to me<br><span class="bold">response time may vary</span></p>
+	</a>
+	<span class="stack gap-2 lg:gap-4">
+		<h2>Session</h2>
+		<p>More privacy focused? <br/>Contact me via Session !</p>
+		<p class="bold">My Account ID is<br/>{Socials.SES}</p>
+	</span>
+	<a class="stack gap-2 lg:gap-4" href={Socials.LIN} target="_blank" rel="noopener noreferrer">
+		<h2>{RVS("nIdekniL")}</h2>
+		<p><span class="bold">I do not use this platform as much</span><br/>But I still have an account there</p>
+	</a>
+</section>
+
+<style>
+	.bold { font-weight: bold; }
+
+	.box {
+		padding: 1.5rem;
+	}
+
+	.skills {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.skills h2 {
+		font-size: var(--text-base);
+	}
+
+	.skills p {
+		color: var(--gray-400);
+	}
+
+	@media (min-width: 50em) {
+		.box {
+			border-radius: 1.5rem;
+			padding: 2.5rem;
+		}
+
+		.skills {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 5rem;
+		}
+
+		.skills h2 {
+			font-size: var(--text-xl);
+		}
+	}
+</style>
